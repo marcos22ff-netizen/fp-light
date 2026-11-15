@@ -58,10 +58,10 @@
       const img = quadros[j];
       const cw = canvas.width, ch = canvas.height;
       if (celular) {
-        // Preserve o quadro panorâmico inteiro; o cenário desfocado fica no palco.
-        const escala = Math.min(cw / img.naturalWidth, ch / img.naturalHeight);
+        // Amplia os quadros mobile para cobrir a tela e ancora a cena no topo.
+        const escala = Math.max(cw / img.naturalWidth, ch / img.naturalHeight) * 1.06;
         const w = img.naturalWidth * escala, h = img.naturalHeight * escala;
-        ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
+        ctx.drawImage(img, (cw - w) / 2, 0, w, h);
       } else {
         const escala = Math.max(cw / img.naturalWidth, ch / img.naturalHeight); // "cover"
         const w = img.naturalWidth * escala, h = img.naturalHeight * escala;
