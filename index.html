@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>FP Light</title>
+  <meta name="description" content="Locação de iluminação cênica para eventos, igrejas e shows. Moving, PAR LED, strobo Atomic, K10, wash e COB.">
+  <meta property="og:title" content="FP Light">
+  <meta property="og:description" content="Locação de iluminação cênica para eventos, igrejas e shows. Moving, PAR LED, strobo Atomic, K10, wash e COB.">
+  <meta property="og:image" content="assets/frames/desktop/f_0001.webp">
+  <meta name="theme-color" content="#080b14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Troque as famílias conforme a identidade visual (direcao-de-arte.md) -->
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/frames/desktop/f_0001.webp">
+  <link rel="stylesheet" href="estilo.css">
+  <script type="module" src="assets/vendor/model-viewer.min.js"></script>
+</head>
+<body>
+
+<header class="topo">
+  <a href="#inicio" class="marca" aria-label="FP Light">
+    <!-- Com logo: <img src="assets/logo.svg" alt="FP Light" class="marca-logo"> -->
+    <img src="assets/logo.png" alt="FP Light Iluminação" class="marca-logo">
+  </a>
+  <nav class="menu" aria-label="Seções">
+    <a href="#sobre">Sobre</a>
+    <a href="#eventos">Eventos</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#processo">Como funciona</a>
+    <a href="#contato" class="menu-cta">Fale conosco</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ABERTURA: o vídeo toca com a rolagem. Cada .momento aparece numa faixa do progresso (0 a 1). -->
+  <section id="inicio" class="cine" style="--altura: 420vh">
+    <div class="cine-palco">
+      <canvas class="cine-canvas" aria-hidden="true"></canvas>
+      <div class="cine-vinheta"></div>
+
+      <div class="momento" data-de="0" data-ate="0.28">
+        <div class="painel painel--vidro">
+          <h1 class="titulo-abertura">A luz certa muda a cena.</h1>
+          <p class="apoio">Locação de iluminação cênica para eventos, igrejas e shows.</p>
+        </div>
+      </div>
+      <div class="momento momento--direita" data-de="0.36" data-ate="0.64">
+        <div class="painel painel--vidro">
+          <p class="destaque">Moving, wash, PAR LED e efeitos para desenhar o ambiente.</p>
+        </div>
+      </div>
+      <div class="momento momento--centro" data-de="0.72" data-ate="1">
+        <div class="painel painel--vidro">
+          <p class="destaque">Conte o espaço e a data. Vamos conversar sobre a luz do seu evento.</p>
+          <a href="#contato" class="botao">Pedir orçamento pelo WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="cine-dica" aria-hidden="true"><span></span>role</div>
+    </div>
+  </section>
+
+  <!-- SOBRE: imagem fundida à direita, texto em painel à esquerda -->
+  <section id="sobre" class="secao">
+    <img class="arte arte--direita" src="assets/img/sobre.webp" alt="" loading="lazy">
+    <div class="secao-grade">
+      <div class="painel revelar">
+        <span class="rotulo">01</span>
+        <h2>A luz ocupa o espaço.</h2>
+        <p>A FP Light trabalha com locação de iluminação cênica para eventos, igrejas e shows. Um conjunto de equipamentos para compor cor, movimento e presença no palco.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS: imagem de fundo dissolvida, cartões por cima -->
+  <section id="servicos" class="secao secao--larga">
+    <img class="arte arte--fundo" src="assets/img/servicos.webp" alt="" loading="lazy">
+    <div class="painel painel--cabecalho revelar">
+      <span class="rotulo">02</span>
+      <h2>Equipamentos para cada desenho de luz.</h2>
+    </div>
+    <article class="moving-demo revelar">
+      <div class="moving-visual" aria-label="Visualizador 3D do Moving Head">
+        <model-viewer src="assets/modelos/moving.glb" alt="Moving Head em modelo 3D interativo" camera-controls auto-rotate auto-rotate-delay="900" rotation-per-second="18deg" interaction-prompt="auto" touch-action="pan-y" shadow-intensity="1.1" exposure="1.15" environment-image="neutral" loading="lazy" reveal="auto" aria-label="Arraste para girar o Moving em 360 graus"></model-viewer>
+        <span class="moving-dica"><span aria-hidden="true">⟳</span> Arraste para girar em 360°</span>
+      </div>
+      <div class="moving-info painel">
+        <span class="rotulo">VISUALIZAÇÃO 3D</span>
+        <h3>Moving Head</h3>
+        <p>Veja o equipamento de todos os ângulos. Arraste sobre o modelo para explorar.</p>
+        <details class="moving-detalhes">
+          <summary>Ver informações do aparelho</summary>
+          <div class="moving-detalhes-conteudo">
+            <p>Equipamento de iluminação cênica com cabeça móvel, usado para criar movimento e composições de luz em palcos e ambientes.</p>
+            <ul>
+              <li><strong>Categoria</strong><span>Moving Head para iluminação cênica</span></li>
+              <li><strong>Aplicações</strong><span>Shows, eventos e igrejas</span></li>
+              <li><strong>Locação</strong><span>Consulte disponibilidade e especificações pelo WhatsApp</span></li>
+            </ul>
+          </div>
+        </details>
+        <a class="botao moving-cta" href="https://wa.me/5521992627563?text=Ol%C3%A1%21%20Quero%20consultar%20a%20loca%C3%A7%C3%A3o%20do%20Moving%20Head." target="_blank" rel="noopener">Consultar este aparelho</a>
+      </div>
+    </article>
+    <div class="cartoes">
+      <article class="painel cartao revelar">
+        <h3>Moving e K10</h3>
+        <p>Movimento e recortes de luz para dar ritmo ao palco.</p>
+      </article>
+      <article class="painel cartao revelar">
+        <h3>PAR LED, wash e COB</h3>
+        <p>Preenchimento de cor e luz ampla para palco e ambiente.</p>
+      </article>
+      <article class="painel cartao revelar">
+        <h3>Strobo Atomic</h3>
+        <p>Efeito de impacto para momentos que pedem pulso e intensidade.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="eventos" class="secao secao--eventos">
+    <img class="arte arte--esquerda evento-foto evento-foto--um" src="assets/img/evento-1.webp" alt="Palco com iluminação verde e âmbar" loading="lazy">
+    <img class="arte arte--direita evento-foto evento-foto--dois" src="assets/img/evento-2.webp" alt="Palco com feixes azuis, roxos e brancos" loading="lazy">
+    <div class="painel painel--evento revelar">
+      <span class="rotulo">03</span>
+      <h2>Palco visto de perto.</h2>
+      <p>Dois registros do palco em composições diferentes de cor e intensidade.</p>
+    </div>
+  </section>
+
+  <!-- PROCESSO: imagem fundida à esquerda, passos à direita -->
+  <section id="processo" class="secao">
+    <img class="arte arte--esquerda" src="assets/img/processo.webp" alt="" loading="lazy">
+    <div class="secao-grade secao-grade--direita">
+      <div class="painel revelar">
+        <span class="rotulo">04</span>
+        <h2>A montagem começa na conversa.</h2>
+        <ol class="passos">
+          <li><strong>Conte o contexto</strong><span>Tipo de evento, espaço e data.</span></li>
+          <li><strong>Fale do que precisa</strong><span>A estrutura de iluminação que você imagina para o palco.</span></li>
+          <li><strong>Peça seu orçamento</strong><span>A disponibilidade e os detalhes são alinhados pelo WhatsApp.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO: cadastro que dispara para o e-mail configurado em config.js -->
+  <section id="contato" class="secao secao--contato">
+    <img class="arte arte--fundo arte--suave" src="assets/img/contato.webp" alt="" loading="lazy">
+    <div class="painel painel--form revelar">
+      <span class="rotulo">05</span>
+      <h2>Vamos falar do seu evento?</h2>
+      <p>Envie uma mensagem com a data, o local e o tipo de evento para consultar a locação.</p>
+      <a class="botao contato-cta" href="https://wa.me/5521992627563?text=Ol%C3%A1%21%20Quero%20um%20or%C3%A7amento%20para%20ilumina%C3%A7%C3%A3o%20do%20meu%20evento." target="_blank" rel="noopener">Chamar a FP Light no WhatsApp</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape">
+  <div class="painel rodape-painel">
+    <img src="assets/logo.png" alt="FP Light Iluminação" class="marca-logo">
+    <span>Locação de iluminação cênica</span>
+    <span>© <span data-ano></span> FP Light</span>
+  </div>
+</footer>
+
+<a class="whats" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3Zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.3-4-.3-.4a10.4 10.4 0 0 1-1.6-5.6C5.5 9.8 10.2 5.2 16 5.2s10.5 4.6 10.5 10.4S21.8 26.1 16 26.1Zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.7 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4Z"/></svg>
+</a>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
