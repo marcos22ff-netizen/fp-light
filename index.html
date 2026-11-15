@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>FP Light</title>
-  <meta name="description" content="Locação de iluminação cênica para eventos, igrejas e shows. Moving, PAR LED, strobo Atomic, K10, wash e COB.">
+  <meta name="description" content="Locação de iluminação cênica para eventos, igrejas e shows. Moving Wash, PAR LED, strobo Atomic e COB.">
   <meta property="og:title" content="FP Light">
-  <meta property="og:description" content="Locação de iluminação cênica para eventos, igrejas e shows. Moving, PAR LED, strobo Atomic, K10, wash e COB.">
+  <meta property="og:description" content="Locação de iluminação cênica para eventos, igrejas e shows. Moving Wash, PAR LED, strobo Atomic e COB.">
   <meta property="og:image" content="assets/frames/desktop/f_0001.webp">
   <meta name="theme-color" content="#080b14">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,14 +84,18 @@
       <h2>Equipamentos para cada desenho de luz.</h2>
     </div>
     <article class="moving-demo revelar">
-      <div class="moving-visual" aria-label="Visualizador 3D do Moving Head">
-        <model-viewer src="assets/modelos/moving.glb" alt="Moving Head em modelo 3D interativo" camera-controls auto-rotate auto-rotate-delay="900" rotation-per-second="18deg" interaction-prompt="auto" touch-action="pan-y" shadow-intensity="1.1" exposure="1.15" environment-image="neutral" loading="lazy" reveal="auto" aria-label="Arraste para girar o Moving em 360 graus"></model-viewer>
+      <div class="moving-visual" aria-label="Visualizador 3D de Moving Wash">
+        <model-viewer id="equipamento-3d" src="assets/modelos/moving.glb" alt="Moving Head em modelo 3D interativo" camera-controls auto-rotate auto-rotate-delay="900" rotation-per-second="18deg" interaction-prompt="auto" touch-action="pan-y" shadow-intensity="1.1" exposure="1.15" environment-image="neutral" loading="lazy" reveal="auto" aria-label="Arraste para girar o Moving em 360 graus"></model-viewer>
         <span class="moving-dica"><span aria-hidden="true">⟳</span> Arraste para girar em 360°</span>
       </div>
       <div class="moving-info painel">
         <span class="rotulo">VISUALIZAÇÃO 3D</span>
-        <h3>Moving Head</h3>
-        <p>Veja o equipamento de todos os ângulos. Arraste sobre o modelo para explorar.</p>
+        <h3>Moving Wash</h3>
+        <div class="modelo-seletor" role="group" aria-label="Escolha o modelo 3D">
+          <button class="modelo-opcao ativo" type="button" aria-pressed="true" data-arquivo="moving.glb" data-nome="Moving" data-alt="Moving Head em modelo 3D interativo" data-descricao="Modelo 3D do Moving selecionado. Arraste para girar e explorar todos os ângulos.">Moving</button>
+          <button class="modelo-opcao" type="button" aria-pressed="false" data-arquivo="wash.glb" data-nome="Wash" data-alt="Refletor Wash em modelo 3D interativo" data-descricao="Modelo 3D do Wash selecionado. Arraste para girar e explorar todos os ângulos.">Wash</button>
+        </div>
+        <p id="modelo-descricao" aria-live="polite">Modelo 3D do Moving selecionado. Arraste para girar e explorar todos os ângulos.</p>
         <details class="moving-detalhes">
           <summary>Ver informações do aparelho</summary>
           <div class="moving-detalhes-conteudo">
@@ -103,12 +107,12 @@
             </ul>
           </div>
         </details>
-        <a class="botao moving-cta" href="https://wa.me/5521992627563?text=Ol%C3%A1%21%20Quero%20consultar%20a%20loca%C3%A7%C3%A3o%20do%20Moving%20Head." target="_blank" rel="noopener">Consultar este aparelho</a>
+        <a class="botao moving-cta" href="https://wa.me/5521992627563?text=Ol%C3%A1%21%20Quero%20consultar%20a%20loca%C3%A7%C3%A3o%20do%20Moving." target="_blank" rel="noopener">Consultar Moving</a>
       </div>
     </article>
     <div class="cartoes">
       <article class="painel cartao revelar">
-        <h3>Moving e K10</h3>
+        <h3>Moving Wash</h3>
         <p>Movimento e recortes de luz para dar ritmo ao palco.</p>
       </article>
       <article class="painel cartao revelar">

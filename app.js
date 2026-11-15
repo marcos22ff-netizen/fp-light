@@ -149,6 +149,30 @@
   document.querySelectorAll(".revelar").forEach((el) => io.observe(el));
   document.querySelectorAll("[data-ano]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
+  const visor3d = document.querySelector("#equipamento-3d");
+  const descricao3d = document.querySelector("#modelo-descricao");
+  const consulta3d = document.querySelector(".moving-cta");
+  document.querySelectorAll(".modelo-opcao").forEach((opcao) => {
+    opcao.addEventListener("click", () => {
+      if (!visor3d) return;
+      const nome = opcao.dataset.nome;
+      visor3d.src = `assets/modelos/${opcao.dataset.arquivo}`;
+      visor3d.alt = opcao.dataset.alt;
+      visor3d.setAttribute("aria-label", `Arraste para girar o ${nome} em 360 graus`);
+      if (descricao3d) descricao3d.textContent = opcao.dataset.descricao;
+      if (consulta3d) {
+        const mensagem = `Olá! Quero consultar a locação do ${nome}.`;
+        consulta3d.href = `https://wa.me/${String(S.whatsapp?.numero || "").replace(/\D/g, "")}?text=${encodeURIComponent(mensagem)}`;
+        consulta3d.textContent = `Consultar ${nome}`;
+      }
+      document.querySelectorAll(".modelo-opcao").forEach((item) => {
+        const selecionado = item === opcao;
+        item.classList.toggle("ativo", selecionado);
+        item.setAttribute("aria-pressed", String(selecionado));
+      });
+    });
+  });
+
   /* ── WhatsApp ─────────────────────────────────────────────────────────── */
   if (whats && S.whatsapp) {
     const num = String(S.whatsapp.numero || "").replace(/\D/g, "");
