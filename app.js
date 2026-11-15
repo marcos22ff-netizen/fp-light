@@ -150,6 +150,7 @@
   document.querySelectorAll("[data-ano]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
   const visor3d = document.querySelector("#equipamento-3d");
+  const palco3d = document.querySelector(".moving-visual");
   const descricao3d = document.querySelector("#modelo-descricao");
   const consulta3d = document.querySelector(".moving-cta");
   const opcoesModelo = [...document.querySelectorAll(".modelo-opcao")];
@@ -157,18 +158,22 @@
   let trocaModeloAtual = 0;
 
   const animarVisor = (classe) => new Promise((resolve) => {
-    visor3d.classList.remove("modelo-fechando", "modelo-abrindo");
-    void visor3d.offsetWidth;
+    if (classe === "modelo-fechando") palco3d.classList.remove("modelo-fechado");
+    else palco3d.classList.add("modelo-fechado");
+    palco3d.classList.remove("modelo-fechando", "modelo-abrindo");
+    void palco3d.offsetWidth;
     let timer;
     const terminar = (evento) => {
-      if (evento && evento.target !== visor3d) return;
+      if (evento && evento.target !== palco3d) return;
       clearTimeout(timer);
-      visor3d.removeEventListener("animationend", terminar);
-      visor3d.classList.remove(classe);
+      palco3d.removeEventListener("animationend", terminar);
+      palco3d.classList.remove(classe);
+      if (classe === "modelo-fechando") palco3d.classList.add("modelo-fechado");
+      else palco3d.classList.remove("modelo-fechado");
       resolve();
     };
-    visor3d.addEventListener("animationend", terminar);
-    visor3d.classList.add(classe);
+    palco3d.addEventListener("animationend", terminar);
+    palco3d.classList.add(classe);
     timer = setTimeout(() => terminar(), classe === "modelo-fechando" ? 340 : 440);
   });
 
@@ -230,15 +235,14 @@
     }
   };
 
-  opcoesModelo.forEach((opcao) => opcao.addEventListener("click", () => selecionarModelo(opcao)));
+  opcoesModelo.forEach((opcao) => opcao.addEventListener("click", () => selecionarModelo(opcao, true)));
 
-  const cartaoWash = document.querySelector(".cartao--abrir-wash");
-  if (cartaoWash) cartaoWash.addEventListener("click", async () => {
-    const wash = opcoesModelo.find((opcao) => opcao.dataset.nome === "Wash");
+  document.querySelectorAll(".cartao--abrir-modelo").forEach((cartao) => cartao.addEventListener("click", async () => {
+    const opcao = opcoesModelo.find((item) => item.dataset.nome === cartao.dataset.modelo);
     document.querySelector("#moving-demo")?.scrollIntoView({ behavior: movimentoReduzido ? "auto" : "smooth", block: "center" });
     if (!movimentoReduzido) await new Promise((resolve) => setTimeout(resolve, 420));
-    await selecionarModelo(wash, true);
-  });
+    await selecionarModelo(opcao, true);
+  }));
 
   /* ── WhatsApp ─────────────────────────────────────────────────────────── */
   if (whats && S.whatsapp) {
