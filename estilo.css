@@ -131,6 +131,11 @@ p { margin: 0 0 1em; color: var(--texto-suave); text-wrap: pretty; }
 .cartao h3 { margin-bottom: .4em; }
 .cartao { transition: transform .5s var(--ease), border-color .5s; }
 .cartao:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--acento) 50%, transparent); }
+.cartao--abrir-wash { width: 100%; text-align: left; color: var(--texto); font: inherit; cursor: pointer; }
+.cartao--abrir-wash:focus-visible { outline: 2px solid var(--acento); outline-offset: 4px; }
+.cartao-acao { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; color: var(--acento); font-size: 13px; font-weight: 600; }
+.cartao-acao span { transition: transform .25s var(--ease); }
+.cartao--abrir-wash:hover .cartao-acao span { transform: translate(3px, -3px); }
 .passos { list-style: none; margin: 8px 0 0; padding: 0; counter-reset: p; display: grid; gap: 22px; }
 .passos li { counter-increment: p; display: grid; grid-template-columns: 42px 1fr; column-gap: 12px; }
 .passos li::before { content: counter(p, decimal-leading-zero); grid-row: span 2; font-family: var(--fonte-titulo); color: var(--acento); font-size: 22px; }
@@ -258,6 +263,10 @@ p { margin: 0 0 1em; color: var(--texto-suave); text-wrap: pretty; }
 }
 .moving-visual { position: relative; min-height: 460px; overflow: hidden; }
 .moving-visual model-viewer { width: 100%; height: 100%; min-height: 460px; --poster-color: transparent; background: transparent; }
+.moving-visual model-viewer.modelo-fechando { animation: fechar-modelo .28s cubic-bezier(.7, 0, .84, 0) forwards; transform-origin: center; }
+.moving-visual model-viewer.modelo-abrindo { animation: abrir-modelo .38s cubic-bezier(.2, .7, .1, 1) both; transform-origin: center; }
+@keyframes fechar-modelo { to { clip-path: inset(48% 0); transform: scaleY(.04); opacity: .15; filter: brightness(.45); } }
+@keyframes abrir-modelo { from { clip-path: inset(48% 0); transform: scaleY(.04); opacity: .15; filter: brightness(.45); } to { clip-path: inset(0); transform: scaleY(1); opacity: 1; filter: brightness(1); } }
 .moving-dica { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 8px 14px; border: 1px solid var(--linha); border-radius: 999px; background: rgb(8 11 20 / .76); color: var(--texto-suave); font-size: 12px; letter-spacing: .04em; pointer-events: none; }
 .moving-dica span { color: var(--acento); font-size: 18px; vertical-align: -1px; margin-right: 5px; }
 .moving-info { align-self: center; margin: 24px; padding: clamp(22px, 2.5vw, 36px); background: rgb(12 16 27 / .84); }

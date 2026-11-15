@@ -83,7 +83,7 @@
       <span class="rotulo">02</span>
       <h2>Equipamentos para cada desenho de luz.</h2>
     </div>
-    <article class="moving-demo revelar">
+    <article id="moving-demo" class="moving-demo revelar">
       <div class="moving-visual" aria-label="Visualizador 3D de Moving Wash">
         <model-viewer id="equipamento-3d" src="assets/modelos/moving.glb" alt="Moving Head em modelo 3D interativo" camera-controls auto-rotate auto-rotate-delay="900" rotation-per-second="18deg" interaction-prompt="auto" touch-action="pan-y" shadow-intensity="1.1" exposure="1.15" environment-image="neutral" loading="lazy" reveal="auto" aria-label="Arraste para girar o Moving em 360 graus"></model-viewer>
         <span class="moving-dica"><span aria-hidden="true">⟳</span> Arraste para girar em 360°</span>
@@ -111,10 +111,11 @@
       </div>
     </article>
     <div class="cartoes">
-      <article class="painel cartao revelar">
+      <button class="painel cartao cartao--abrir-wash revelar" type="button" aria-controls="moving-demo" aria-label="Abrir o modelo 3D e selecionar Wash">
         <h3>Moving Wash</h3>
-        <p>Movimento e recortes de luz para dar ritmo ao palco.</p>
-      </article>
+        <p>Selecione para ver o modelo 3D do Wash.</p>
+        <span class="cartao-acao" aria-hidden="true">Ver Wash em 3D <span>↗</span></span>
+      </button>
       <article class="painel cartao revelar">
         <h3>PAR LED, wash e COB</h3>
         <p>Preenchimento de cor e luz ampla para palco e ambiente.</p>

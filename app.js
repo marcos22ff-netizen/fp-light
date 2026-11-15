@@ -152,25 +152,92 @@
   const visor3d = document.querySelector("#equipamento-3d");
   const descricao3d = document.querySelector("#modelo-descricao");
   const consulta3d = document.querySelector(".moving-cta");
-  document.querySelectorAll(".modelo-opcao").forEach((opcao) => {
-    opcao.addEventListener("click", () => {
-      if (!visor3d) return;
-      const nome = opcao.dataset.nome;
-      visor3d.src = `assets/modelos/${opcao.dataset.arquivo}`;
-      visor3d.alt = opcao.dataset.alt;
-      visor3d.setAttribute("aria-label", `Arraste para girar o ${nome} em 360 graus`);
-      if (descricao3d) descricao3d.textContent = opcao.dataset.descricao;
-      if (consulta3d) {
-        const mensagem = `Olá! Quero consultar a locação do ${nome}.`;
-        consulta3d.href = `https://wa.me/${String(S.whatsapp?.numero || "").replace(/\D/g, "")}?text=${encodeURIComponent(mensagem)}`;
-        consulta3d.textContent = `Consultar ${nome}`;
-      }
-      document.querySelectorAll(".modelo-opcao").forEach((item) => {
-        const selecionado = item === opcao;
-        item.classList.toggle("ativo", selecionado);
-        item.setAttribute("aria-pressed", String(selecionado));
-      });
+  const opcoesModelo = [...document.querySelectorAll(".modelo-opcao")];
+  const movimentoReduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let trocaModeloAtual = 0;
+
+  const animarVisor = (classe) => new Promise((resolve) => {
+    visor3d.classList.remove("modelo-fechando", "modelo-abrindo");
+    void visor3d.offsetWidth;
+    let timer;
+    const terminar = (evento) => {
+      if (evento && evento.target !== visor3d) return;
+      clearTimeout(timer);
+      visor3d.removeEventListener("animationend", terminar);
+      visor3d.classList.remove(classe);
+      resolve();
+    };
+    visor3d.addEventListener("animationend", terminar);
+    visor3d.classList.add(classe);
+    timer = setTimeout(() => terminar(), classe === "modelo-fechando" ? 340 : 440);
+  });
+
+  const atualizarModeloSelecionado = (opcao) => {
+    const nome = opcao.dataset.nome;
+    visor3d.alt = opcao.dataset.alt;
+    visor3d.setAttribute("aria-label", `Arraste para girar o ${nome} em 360 graus`);
+    if (descricao3d) descricao3d.textContent = opcao.dataset.descricao;
+    if (consulta3d) {
+      const mensagem = `Olá! Quero consultar a locação do ${nome}.`;
+      consulta3d.href = `https://wa.me/${String(S.whatsapp?.numero || "").replace(/\D/g, "")}?text=${encodeURIComponent(mensagem)}`;
+      consulta3d.textContent = `Consultar ${nome}`;
+    }
+    opcoesModelo.forEach((item) => {
+      const selecionado = item === opcao;
+      item.classList.toggle("ativo", selecionado);
+      item.setAttribute("aria-pressed", String(selecionado));
     });
+  };
+
+  const selecionarModelo = async (opcao, transicao = false) => {
+    if (!visor3d || !opcao) return;
+    const arquivo = opcao.dataset.arquivo;
+    const atual = visor3d.getAttribute("src") || "";
+    if (atual.endsWith(arquivo)) {
+      atualizarModeloSelecionado(opcao);
+      if (transicao && !movimentoReduzido) {
+        await animarVisor("modelo-fechando");
+        await animarVisor("modelo-abrindo");
+      }
+      return;
+    }
+
+    const idTroca = ++trocaModeloAtual;
+    const animar = transicao && !movimentoReduzido;
+    if (animar) await animarVisor("modelo-fechando");
+    if (idTroca !== trocaModeloAtual) return;
+
+    let carregamento = Promise.resolve();
+    if (animar) {
+      carregamento = new Promise((resolve) => {
+        let timer;
+        const concluir = () => {
+          clearTimeout(timer);
+          visor3d.removeEventListener("load", concluir);
+          visor3d.removeEventListener("error", concluir);
+          resolve();
+        };
+        visor3d.addEventListener("load", concluir);
+        visor3d.addEventListener("error", concluir);
+        timer = setTimeout(concluir, 12000);
+      });
+    }
+    visor3d.src = `assets/modelos/${arquivo}`;
+    atualizarModeloSelecionado(opcao);
+    if (animar) {
+      await carregamento;
+      if (idTroca === trocaModeloAtual) await animarVisor("modelo-abrindo");
+    }
+  };
+
+  opcoesModelo.forEach((opcao) => opcao.addEventListener("click", () => selecionarModelo(opcao)));
+
+  const cartaoWash = document.querySelector(".cartao--abrir-wash");
+  if (cartaoWash) cartaoWash.addEventListener("click", async () => {
+    const wash = opcoesModelo.find((opcao) => opcao.dataset.nome === "Wash");
+    document.querySelector("#moving-demo")?.scrollIntoView({ behavior: movimentoReduzido ? "auto" : "smooth", block: "center" });
+    if (!movimentoReduzido) await new Promise((resolve) => setTimeout(resolve, 420));
+    await selecionarModelo(wash, true);
   });
 
   /* ── WhatsApp ─────────────────────────────────────────────────────────── */
