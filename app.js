@@ -57,9 +57,16 @@
       if (j < 0 || (j === desenhado && !forcar)) return;
       const img = quadros[j];
       const cw = canvas.width, ch = canvas.height;
-      const escala = Math.max(cw / img.naturalWidth, ch / img.naturalHeight); // "cover"
-      const w = img.naturalWidth * escala, h = img.naturalHeight * escala;
-      ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
+      if (celular) {
+        // Preserve o quadro panorâmico inteiro; o cenário desfocado fica no palco.
+        const escala = Math.min(cw / img.naturalWidth, ch / img.naturalHeight);
+        const w = img.naturalWidth * escala, h = img.naturalHeight * escala;
+        ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
+      } else {
+        const escala = Math.max(cw / img.naturalWidth, ch / img.naturalHeight); // "cover"
+        const w = img.naturalWidth * escala, h = img.naturalHeight * escala;
+        ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
+      }
       desenhado = j;
     }
 

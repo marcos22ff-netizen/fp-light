@@ -238,6 +238,13 @@ p { margin: 0 0 1em; color: var(--texto-suave); text-wrap: pretty; }
 .topo.rolou { background: rgb(8 11 20 / .72); }
 .painel--vidro { background: rgb(8 11 20 / .62); }
 .cine-palco { background: #080b14 url("assets/frames/desktop/f_0001.webp") center 58% / cover no-repeat; }
+@media (max-width: 760px) {
+  .cine-palco { background-image: url("assets/frames/mobile/f_0001.webp"); }
+  .cine-palco::before {
+    -webkit-backdrop-filter: blur(22px) brightness(.42);
+            backdrop-filter: blur(22px) brightness(.42);
+  }
+}
 .cine-palco::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(5 8 17 / .38), rgb(5 8 17 / .12) 48%, #080b14 100%); pointer-events: none; z-index: 1; }
 .cine-canvas, .cine-vinheta, .momento, .cine-dica { z-index: 2; }
 .contato-cta { margin-top: 1.2rem; }
